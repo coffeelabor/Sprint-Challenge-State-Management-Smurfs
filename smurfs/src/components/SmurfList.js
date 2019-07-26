@@ -1,11 +1,14 @@
 import React from "react";
 import Smurf from "./Smurf";
 
-const SmurfList = () => {
+const SmurfList = props => {
+  console.log("SmurfList props", props);
   return (
     <div>
       <h2>Howdy</h2>
-      <Smurf />
+      {props.smurfs.map(smurf => (
+        <Smurf smurf={smurf} />
+      ))}
     </div>
   );
 };

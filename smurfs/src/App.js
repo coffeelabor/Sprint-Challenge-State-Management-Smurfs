@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getSmurf } from "./components/actions";
+import { getSmurfs } from "./components/actions";
 import SmurfList from "./components/SmurfList";
 import "./App.css";
 
-const App = () => {
+const App = props => {
+  console.log("getSmurfs app.js", props);
+  useEffect(() => {
+    props.getSmurfs();
+  }, [props]);
+
   return (
     <div className="App">
       {/* <h1>SMURFS! 2.0 W/ Redux</h1>
@@ -12,17 +17,17 @@ const App = () => {
       <div>Start inside of your `src/index.js` file!</div>
       <div>Have fun!</div> */}
       <h1>Hello</h1>
-      <SmurfList />
+      <SmurfList smurfs={props.state} />
     </div>
   );
 };
 
 const mapStateToProps = state => {
   console.log("mapStateToProps App.js", state);
-  return {};
+  return { state: state.smurfs };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { getSmurfs }
 )(App);

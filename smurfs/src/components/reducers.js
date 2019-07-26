@@ -5,18 +5,18 @@ import {
 } from "./types";
 
 const initialState = {
-  smurfs: []
-  //   name: "",
-  //   age: "",
-  //   height: "",
-  //   id: ""
+  smurfs: [],
+  errors: "",
+  isFetching: false
 };
 
 export const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_SMURF_START:
       return {
-        ...state
+        ...state,
+        error: "",
+        isFetching: true
       };
     default:
       return state;
