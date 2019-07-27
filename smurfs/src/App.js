@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getSmurfs } from "./components/actions";
+import { getSmurfs, postSmurfs } from "./components/actions";
 import SmurfList from "./components/SmurfList";
 import "./App.css";
 
@@ -8,7 +8,18 @@ const App = props => {
   console.log("getSmurfs app.js", props);
   useEffect(() => {
     props.getSmurfs();
-  }, [props]);
+  }, []);
+
+  useEffect(() => {
+    props.postSmurfs();
+  }, []);
+  // useEffect(() => {
+  //   props.postSmurfs({
+  //     name: "",
+  //     age: 0,
+  //     height: ""
+  //   });
+  // }, []);
 
   return (
     <div className="App">
@@ -17,7 +28,7 @@ const App = props => {
       <div>Start inside of your `src/index.js` file!</div>
       <div>Have fun!</div> */}
       <h1>Hello</h1>
-      <SmurfList smurfs={props.state} />
+      <SmurfList smurfs={props.state} postSmurfs={postSmurfs} />
     </div>
   );
 };
@@ -29,5 +40,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getSmurfs }
+  { getSmurfs, postSmurfs }
 )(App);
